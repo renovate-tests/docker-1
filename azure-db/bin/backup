@@ -20,15 +20,15 @@ for VAR in $MANDATORY_VARS; do
   fi
 done
 
-FILENAME="backup-`date '+%Y_%m_%d_%H%M%S'`.dump.gz"
+FILENAME="backup-$(date '+%Y_%m_%d_%H%M%S').dump.gz"
 
 # dump database
-pg_dump --clean --if-exists --format=custom $PGDATABASE | gzip > /tmp/$FILENAME
+pg_dump --clean --if-exists --format=custom "${PGDATABASE}" | gzip > /tmp/"${FILENAME}"
 
 # upload to azure blob
 az storage blob upload \
-  --account-key "$STORAGE_ACCOUNT_KEY" \
-  --account-name "$STORAGE_ACCOUNT_NAME" \
-  --container "$STORAGE_CONTAINER" \
-  --file "/tmp/$FILENAME" \
-  --name "$FILENAME"
+  --account-key "${STORAGE_ACCOUNT_KEY}" \
+  --account-name "${STORAGE_ACCOUNT_NAME}" \
+  --container "${STORAGE_CONTAINER}" \
+  --file "/tmp/${FILENAME}" \
+  --name "${FILENAME}"

@@ -29,5 +29,3 @@ RUN set -ex \
   && apk del .pip-deps
 
 COPY ./bin /bin
-
-
