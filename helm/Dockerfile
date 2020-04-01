@@ -35,11 +35,10 @@ RUN set -x && \
     git clone -b 'v0.3.0' --single-branch --depth 1 \
       https://github.com/ztombol/bats-support /usr/lib/bats-support; \
     git clone -b 'v0.3.0' --single-branch --depth 1 \
-      https://github.com/ztombol/bats-assert /usr/lib/bats-assert; \
-    \
-    #
-    # Install just plugin
-    curl -L https://github.com/SocialGouv/helm-charts/releases/download/v2.8.0/helm-just-linux-2.8.0.tgz | tar -C "$(helm home)" -xzv
+      https://github.com/ztombol/bats-assert /usr/lib/bats-assert;
+
+# Install just plugin. needs existing "helm home" command
+RUN curl -L https://github.com/SocialGouv/helm-charts/releases/download/v2.8.0/helm-just-linux-2.8.0.tgz | tar -C "$(helm home)" -xzv
 
 USER kubectl
 
