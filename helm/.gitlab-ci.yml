@@ -26,6 +26,9 @@ Test helm:
     - kubectl version
     #
     - helm list
+    #
+    # check just plugin
+    - helm plugin list | grep '^just' | egrep .
 
 Publish helm to Github Registry:
   extends: .base_publish_to_github_stage
